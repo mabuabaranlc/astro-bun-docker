@@ -1,0 +1,19 @@
+# Usar la imagen oficial de Bun como base
+FROM oven/bun:1 AS base
+WORKDIR app
+
+# Instalar dependencias solo de producción
+COPY ../app/package.json ../app/bun.lockb ./
+RUN bun install --frozen-lockfile --production
+
+# Copiar los archivos de la aplicación
+COPY ../app .
+
+# Construir la aplicación para producción
+RUN bun run build
+
+# Exponer el puerto 80 para producción
+EXPOSE 80/tcp
+
+# Ejecutar la aplicación en modo producción
+CMD ["bun", "run", "preview", "--port", "80"]

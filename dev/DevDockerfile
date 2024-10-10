@@ -1,0 +1,15 @@
+FROM oven/bun
+
+WORKDIR app
+
+# Copiar los archivos necesarios para instalar dependencias desde el nivel superior 'app'
+COPY ../app/package*.json ./
+
+# Instalar las dependencias de desarrollo
+RUN bun install
+
+# Copiar el resto de la aplicación desde la carpeta 'app'
+COPY ../app .
+
+# Iniciar la aplicación en modo desarrollo
+CMD ["bun", "run", "dev"]

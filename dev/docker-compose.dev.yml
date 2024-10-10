@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  astro:
+    build:
+      context: ..
+      dockerfile: dev/DevDockerfile
+    environment:
+      NODE_ENV: development  # Definir desarrollo como entorno por defecto
+    ports:
+      - '3000:3000'
+    volumes:
+      - ../app:/usr/src/app  # Montar volúmenes para sincronización en desarrollo
+    command: >
+      sh -c "
+      bun run dev
+      "

@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  astro:
+    extends:
+      file: ${ENVIROMENT}/docker-compose.${ENVIROMENT}.yml  # Utiliza la variable FOLDER para decidir el entorno
+      service: astro

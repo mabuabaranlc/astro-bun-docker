@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  astro:
+    build:
+      context: ..
+      dockerfile: prd/PrdDockerfile  # Usar el Dockerfile de producción
+
+    volumes:
+      - ../app:/usr/src/app 
+    ports:
+      - '80:80'  # Asegúrate de que el puerto esté correctamente mapeado
